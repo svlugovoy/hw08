@@ -1,0 +1,30 @@
+<div class="card p-3">
+  <ul class="nav flex-column">
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a class="nav-link" routerLink="/">Home</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a class="nav-link" routerLink="/add">Add Todo</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a class="nav-link" routerLink="/about" >About</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a class="nav-link" routerLink="/xyz" >Try not-found</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!isAuth">
+      <a class="nav-link" routerLink="/auth/login" >Login</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isAuth">
+      <a class="nav-link" routerLink="/auth/login" (click)="onLogout()">Logout</a>
+    </li>
+  </ul>
+
+
+  <hr>
+
+  <p *ngIf="isAuth">Total Todos: {{ todosCount }}</p>
+
+  <p  *ngIf="isAuth">Hi, you are logged as: {{ currentUser }}</p>
+
+</div>

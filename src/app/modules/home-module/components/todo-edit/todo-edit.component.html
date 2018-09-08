@@ -1,0 +1,31 @@
+<div class="col-md-10 card m-3 p-3">
+
+  <form [formGroup]="editForm">
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input formControlName="title"
+             type="text" class="form-control" id="title"
+             [ngClass]="{'is-invalid': editForm.get('title').invalid && editForm.get('title').dirty}"
+      >
+      <div class="invalid-feedback" *ngIf="editForm.get('title').invalid && editForm.get('title').dirty">Title must be not empty. Title length must be >= 3.</div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="completed">Completed</label>
+      <input formControlName="completed"
+             type="text" class="form-control" id="completed"
+             [ngClass]="{'is-invalid': editForm.get('completed').invalid && editForm.get('completed').dirty}"
+      >
+      <div class="invalid-feedback" *ngIf="editForm.get('completed').invalid && editForm.get('completed').dirty">Completed must be not empty. Can be true or false.</div>
+    </div>
+
+    <button class="btn btn-warning" *ngIf="isReadOnly" (click)="switchReadOnly()">Edit</button>
+    <button class="btn btn-success" [disabled]="editForm.invalid"  *ngIf="!isReadOnly" (click)="onEdit()">Save</button>
+    <button class="btn btn-primary" *ngIf="!isReadOnly" (click)="onCancel()">Cancel</button>
+
+  </form>
+
+
+</div>

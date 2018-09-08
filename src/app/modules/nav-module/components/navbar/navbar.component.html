@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">HW05 from lesson 6</a>
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/about">About</a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!isAuth">
+        <a class="nav-link" routerLink="/auth/login">Login</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isAuth">
+        <a class="nav-link" routerLink="/auth/login" (click)="onLogout()">Logout</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="navbar-text">
+    Hi, <span [ngStyle]="{'color': 'white', 'font-size': '20px'}">{{ isAuth ? currentUser : 'Guest'}}</span>
+    <span *ngIf="isAuth">
+      | Total Todos:
+      <span
+        [ngStyle]="{'color': (todosCount % 2 === 0) ? 'red' : 'green', 'font-weight' : 'bold'}">{{ todosCount }}</span>
+      | Today Date:
+      <span [ngStyle]="{'color': 'white'}">{{ today | date : 'mediumDate' }}</span>
+     </span>
+  </div>
+
+</nav>
